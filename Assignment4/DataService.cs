@@ -10,7 +10,7 @@ namespace Assignment4
 {
     public class DataService
     {
-        //public DatabaseContext DB => new DatabaseContext();
+        //public DatabaseContext DB => new DatabaseContext(); when this is here and not inside the functions, the tests won't all pass. Left it here for now. 
 
         public List<Category> GetCategories()
         {
@@ -75,21 +75,33 @@ namespace Assignment4
             return result;
         }
 
-        public Order GetOrder(int value)
-        {
-            using var DB = new DatabaseContext();
-
-            var orders = DB.Order
-                .Where(order => order.Id == value).FirstOrDefault();
-            return orders;
-        }
-
         public List<Product> GetProductByCategory(int catId)
         {
             using var DB = new DatabaseContext();
             var result = DB.Products
                         .Where(product => product.CategoryId == catId)
                         .Include(product => product.Category).ToList();
+            return result;
+        }
+
+
+        // from here down, these do not make the tests pass. 
+        public List<Order> GetOrder(int value)
+        {
+            using var DB = new DatabaseContext();
+
+            var results = (from o in DB.Order
+                           join od in DB.OrderDetails on o.Id equals od.Id
+                           join p in DB.Products on od.ProductId equals p.Id
+                           join c in DB.Categories on p.CategoryId equals c.Id
+                           where o.Id == value select o ).ToList();
+            return results;
+        }
+
+        public List<Order> GetOrders()
+        {
+            using var DB = new DatabaseContext();
+            var result = DB.Order.ToList();
             return result;
         }
 
@@ -100,8 +112,6 @@ namespace Assignment4
                         .Where(product => product.Name.Contains(name)).ToList();
             return result;
         }
-
-
 
     }
 }

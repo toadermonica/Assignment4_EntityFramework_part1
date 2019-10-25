@@ -12,5 +12,7 @@ namespace Assignment4
 
         [Column("description")]
         public string Description { get; set; }
+
+        public List<Product> Products { get; set; }
     }
 }
