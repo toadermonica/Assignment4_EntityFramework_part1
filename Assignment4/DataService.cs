@@ -111,8 +111,24 @@ namespace Assignment4
                 .FirstOrDefault();
             return results;
         }
+ 
+        public List<OrderDetails> GetOrderDetailsByOrderId(int id)
+        {
+            using var db = new DatabaseContext();
+            return db.OrderDetails
+            .Where(m => m.OrderId == id)
+            .Include(m => m.Product)
+            .ToList();
+        }
 
-       
+        public List<OrderDetails> GetOrderDetailsByProductId(int id)
+        {
+            using var db = new DatabaseContext();
+            return db.OrderDetails
+            .Where(m => m.ProductId == id)
+            .Include(m => m.Order)
+            .ToList();
+        }
 
     }
 }

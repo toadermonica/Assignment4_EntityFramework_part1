@@ -168,40 +168,40 @@ namespace Assignment4.Tests
         }
 
 
-        ///* orderdetails */
-        //[Fact]
-        //public void OrderDetails_Object_HasOrderProductUnitPriceQuantityAndDiscount()
-        //{
-        //    var orderDetails = new OrderDetails();
-        //    Assert.Equal(0, orderDetails.OrderId);
-        //    Assert.Null(orderDetails.Order);
-        //    Assert.Equal(0, orderDetails.ProductId);
-        //    Assert.Null(orderDetails.Product);
-        //    Assert.Equal(0.0, orderDetails.UnitPrice);
-        //    Assert.Equal(0.0, orderDetails.Quantity);
-        //    Assert.Equal(0.0, orderDetails.Discount);
-        //}
+        /* orderdetails */
+        [Fact]
+        public void OrderDetails_Object_HasOrderProductUnitPriceQuantityAndDiscount()
+        {
+            var orderDetails = new OrderDetails();
+            Assert.Equal(0, orderDetails.OrderId);
+            Assert.Null(orderDetails.Order);
+            Assert.Equal(0, orderDetails.ProductId);
+            Assert.Null(orderDetails.Product);
+            Assert.Equal(0.0, orderDetails.UnitPrice);
+            Assert.Equal(0.0, orderDetails.Quantity);
+            Assert.Equal(0.0, orderDetails.Discount);
+        }
 
-        //[Fact]
-        //public void GetOrderDetailByOrderId_ValidId_ReturnsProductNameUnitPriceAndQuantity()
-        //{
-        //    var service = new DataService();
-        //    var orderDetails = service.GetOrderDetailsByOrderId(10248);
-        //    Assert.Equal(3, orderDetails.Count);
-        //    Assert.Equal("Queso Cabrales", orderDetails.First().Product.Name);
-        //    Assert.Equal(14, orderDetails.First().UnitPrice);
-        //    Assert.Equal(12, orderDetails.First().Quantity);
-        //}
+        [Fact]
+        public void GetOrderDetailByOrderId_ValidId_ReturnsProductNameUnitPriceAndQuantity()
+        {
+            var service = new DataService();
+            var orderDetails = service.GetOrderDetailsByOrderId(10248);
+            Assert.Equal(3, orderDetails.Count);
+            Assert.Equal("Queso Cabrales", orderDetails.First().Product.Name);
+            Assert.Equal(14, orderDetails.First().UnitPrice);
+            Assert.Equal(12, orderDetails.First().Quantity);
+        }
 
-        //[Fact]
-        //public void GetOrderDetailByProductId_ValidId_ReturnsOrderDateUnitPriceAndQuantity()
-        //{
-        //    var service = new DataService();
-        //    var orderDetails = service.GetOrderDetailsByProductId(11);
-        //    Assert.Equal(38, orderDetails.Count);
-        //    Assert.Equal("1997-05-06", orderDetails.First().Order.Date.ToString("yyyy-MM-dd"));
-        //    Assert.Equal(21, orderDetails.First().UnitPrice);
-        //    Assert.Equal(3, orderDetails.First().Quantity);
-        //}
+        [Fact]
+        public void GetOrderDetailByProductId_ValidId_ReturnsOrderDateUnitPriceAndQuantity()
+        {
+            var service = new DataService();
+            var orderDetails = service.GetOrderDetailsByProductId(11);
+            Assert.Equal(38, orderDetails.Count);
+            Assert.Equal("1997-05-06", orderDetails.First().Order.Date.ToString("yyyy-MM-dd"));
+            Assert.Equal(21, orderDetails.First().UnitPrice);
+            Assert.Equal(3, orderDetails.First().Quantity);
+        }
     }
 }

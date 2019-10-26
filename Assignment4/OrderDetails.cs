@@ -12,6 +12,9 @@ namespace Assignment4
         public int Quantity { get; set; }
         public int Discount { get; set; }
 
+        /// <summary>
+        /// Tables that have their PK as FK in this OrderDetails table
+        /// </summary>
         public Product Product { get; set; }
         public Order Order { get; set; }
 
