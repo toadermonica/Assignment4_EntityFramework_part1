@@ -126,46 +126,46 @@ namespace Assignment4.Tests
             Assert.Equal("Lakkalikööri", products.Last().Name);
         }
 
-        //[Fact]
-        //public void GetProduct_NameSubString_ReturnsProductsThatMachesTheSubString()
-        //{
-        //    var service = new DataService();
-        //    var products = service.GetProductByName("em");
-        //    Assert.Equal(4, products.Count);
-        //    Assert.Equal("NuNuCa Nuß-Nougat-Creme", products.First().ProductName); // inistially it was products.First().ProductName but I think it is a mistake
-        //    Assert.Equal("Flotemysost", products.Last().ProductName);
-        //}
+        [Fact]
+        public void GetProduct_NameSubString_ReturnsProductsThatMachesTheSubString()
+        {
+            var service = new DataService();
+            var products = service.GetProductByName("em");
+            Assert.Equal(4, products.Count);
+            Assert.Equal("NuNuCa Nuß-Nougat-Creme", products.First().Name); // inistially it was products.First().ProductName but I think it is a mistake
+            Assert.Equal("Flotemysost", products.Last().Name);
+        }
 
         ///* orders */
-        //[Fact]
-        //public void Order_Object_HasIdDatesAndOrderDetails()
-        //{
-        //    var order = new Order();
-        //    Assert.Equal(0, order.Id);
-        //    Assert.Equal(new DateTime(), order.Date);
-        //    Assert.Equal(new DateTime(), order.Required);
-        //    Assert.Null(order.OrderDetails);
-        //    Assert.Null(order.ShipName);
-        //    Assert.Null(order.ShipCity);
-        //}
+        [Fact]
+        public void Order_Object_HasIdDatesAndOrderDetails()
+        {
+            var order = new Order();
+            Assert.Equal(0, order.Id);
+            Assert.Equal(new DateTime(), order.Date);
+            Assert.Equal(new DateTime(), order.Required);
+            Assert.Null(order.OrderDetails);
+            Assert.Null(order.ShipName);
+            Assert.Null(order.ShipCity);
+        }
 
-        //[Fact]
-        //public void GetOrder_ValidId_ReturnsCompleteOrder()
-        //{
-        //    var service = new DataService();
-        //    var order = service.GetOrder(10248);
-        //    Assert.Equal(3, order.OrderDetails.Count);
-        //    Assert.Equal("Queso Cabrales", order.OrderDetails.First().Product.Name);
-        //    Assert.Equal("Dairy Products", order.OrderDetails.First().Product.Category.Name);
-        //}
+        [Fact]
+        public void GetOrder_ValidId_ReturnsCompleteOrder()
+        {
+            var service = new DataService();
+            var order = service.GetOrder(10248);
+            Assert.Equal(3, order.OrderDetails.Count);
+            Assert.Equal("Queso Cabrales", order.OrderDetails.First().Product.Name);
+            Assert.Equal("Dairy Products", order.OrderDetails.First().Product.Category.Name);
+        }
 
-        //[Fact]
-        //public void GetOrders()
-        //{
-        //    var service = new DataService();
-        //    var orders = service.GetOrders();
-        //    Assert.Equal(830, orders.Count);
-        //}
+        [Fact]
+        public void GetOrders()
+        {
+            var service = new DataService();
+            var orders = service.GetOrders();
+            Assert.Equal(830, orders.Count);
+        }
 
 
         ///* orderdetails */
