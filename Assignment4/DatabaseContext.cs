@@ -32,24 +32,25 @@ namespace Assignment4
 
             modelBuilder.Entity<Order>().ToTable("orders");
             modelBuilder.Entity<Order>().Property(o => o.Id).HasColumnName("orderid");
-            modelBuilder.Entity<Order>().Property(o => o.CustomerId).HasColumnName("customerid");
-            modelBuilder.Entity<Order>().Property(o => o.EmployeeId).HasColumnName("employeeid");
-            modelBuilder.Entity<Order>().Property(o => o.OrderDate).HasColumnName("orderdate");
+            modelBuilder.Entity<Order>().Property(o => o.Date).HasColumnName("orderdate");
             modelBuilder.Entity<Order>().Property(o => o.RequiredDate).HasColumnName("requireddate");
             modelBuilder.Entity<Order>().Property(o => o.ShippedDate).HasColumnName("shippeddate");
-            modelBuilder.Entity<Order>().Property(o => o.Freight).HasColumnName("freight");
             modelBuilder.Entity<Order>().Property(o => o.ShipName).HasColumnName("shipname");
-            modelBuilder.Entity<Order>().Property(o => o.ShipAddress).HasColumnName("shipaddress");
             modelBuilder.Entity<Order>().Property(o => o.ShipCity).HasColumnName("shipcity");
-            modelBuilder.Entity<Order>().Property(o => o.ShipPostalcode).HasColumnName("shippostalcode");
-            modelBuilder.Entity<Order>().Property(o => o.ShipCountry).HasColumnName("shipcountry");
+            //modelBuilder.Entity<Order>().Property(o => o.CustomerId).HasColumnName("customerid");
+            //modelBuilder.Entity<Order>().Property(o => o.EmployeeId).HasColumnName("employeeid");
+            //modelBuilder.Entity<Order>().Property(o => o.Freight).HasColumnName("freight");
+            //modelBuilder.Entity<Order>().Property(o => o.ShipAddress).HasColumnName("shipaddress");
+            //modelBuilder.Entity<Order>().Property(o => o.ShipPostalcode).HasColumnName("shippostalcode");
+            //modelBuilder.Entity<Order>().Property(o => o.ShipCountry).HasColumnName("shipcountry");
 
             modelBuilder.Entity<OrderDetails>().ToTable("orderdetails");
-            modelBuilder.Entity<OrderDetails>().Property(o => o.Id).HasColumnName("orderid");
+            modelBuilder.Entity<OrderDetails>().Property(o => o.OrderId).HasColumnName("orderid");
             modelBuilder.Entity<OrderDetails>().Property(o => o.ProductId).HasColumnName("productid");
             modelBuilder.Entity<OrderDetails>().Property(o => o.UnitPrice).HasColumnName("unitprice");
             modelBuilder.Entity<OrderDetails>().Property(o => o.Quantity).HasColumnName("quantity");
             modelBuilder.Entity<OrderDetails>().Property(o => o.Discount).HasColumnName("discount");
+            modelBuilder.Entity<OrderDetails>().HasKey(o => new { o.ProductId, o.OrderId });            // FK constraints
 
             modelBuilder.Entity<Employees>().ToTable("employees");
             modelBuilder.Entity<Employees>().Property(e => e.ID).HasColumnName("employeeid");
@@ -66,7 +67,7 @@ namespace Assignment4
         }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
-        public DbSet<Order> Order { get; set; }
+        public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetails> OrderDetails { get; set; }
         public DbSet<Employees> Employees { get; set; }
     }
