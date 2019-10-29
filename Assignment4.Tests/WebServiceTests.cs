@@ -30,7 +30,7 @@ namespace Assignment4.Tests
             Assert.Equal("Seafood", data.Last()["name"]);
         }
 
-       /* [Fact]
+        [Fact]
         public void ApiCategories_GetWithValidCategoryId_OkAndCategory()
         {
             var (category, statusCode) = GetObject($"{CategoriesApi}/1");
@@ -38,7 +38,7 @@ namespace Assignment4.Tests
             Assert.Equal(HttpStatusCode.OK, statusCode);
             Assert.Equal("Beverages", category["name"]);
         }
-
+        
         [Fact]
         public void ApiCategories_GetWithInvalidCategoryId_NotFound()
         {
@@ -46,7 +46,7 @@ namespace Assignment4.Tests
 
             Assert.Equal(HttpStatusCode.NotFound, statusCode);
         }
-
+        
         [Fact]
         public void ApiCategories_PostWithCategory_Created()
         {
@@ -61,7 +61,7 @@ namespace Assignment4.Tests
 
             DeleteData($"{CategoriesApi}/{category["id"]}");
         }
-
+        /*
         [Fact]
         public void ApiCategories_PutWithValidCategory_Ok()
         {
