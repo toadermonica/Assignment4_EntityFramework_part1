@@ -13,7 +13,7 @@ namespace Assignment4
             /// These tests run very slow against this remote connection and some are passing and some are not. 
             /// Suggestion, first try the test against localhost and see them passing
             string ConnRemote = "host=mazeet.ddns.net;port=32999;db=northwind;uid=raw6;pwd=J8cxYN";
-            string ConnLocal = "host=localhost;db=northwind;uid=postgres;pwd= //add your pass "; 
+            string ConnLocal = "host=localhost;db=northwind;uid=postgres;pwd=//addpass"; 
             optionsBuilder.UseNpgsql(connectionString: ConnRemote);
         }
 

@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Assignment4
 {
-    public class DataService
+    public class DataService : IDataService
     {
         //public DatabaseContext DB => new DatabaseContext(); when this is here and not inside the functions, the tests won't all pass. Left it here for now. 
 
