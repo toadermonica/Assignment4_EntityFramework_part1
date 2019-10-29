@@ -15,7 +15,7 @@ namespace Assignment4
         Product GetProduct(int value);
 
         List<Product> GetProductByCategory(int catId);
-        List<Product> GetProductByName(string name);
+        List<Product> GetProductByName(string name); // needs the IList for calling it through interface
   
         List<Order> GetOrders();
         Order GetOrder(int value);

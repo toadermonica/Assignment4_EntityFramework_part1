@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 namespace RESTfulAPIs.Controllers
 {
     [ApiController]
-    [Route("api/categories")]
+    [Route("api/products")]
+    //[Route("api/products/name")]
     public class ProductsController : ControllerBase
     {
         IDataService _dataService;
@@ -17,7 +18,18 @@ namespace RESTfulAPIs.Controllers
             _dataService = dataService;
         }
 
-       
+        [HttpGet("name/{name}")]
+        public ActionResult<IEnumerable<Product>> GetProductByName(string name)
+        {
+            var products = _dataService.GetProductByName(name);
+            if(products.Count == 0)
+            {
+                return NotFound(products);
+            }
+            return Ok(products);
+        }
+
+
 
 
 
