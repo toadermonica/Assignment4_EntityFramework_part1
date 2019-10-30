@@ -61,7 +61,7 @@ namespace Assignment4.Tests
 
             DeleteData($"{CategoriesApi}/{category["id"]}");
         }
-        /*
+        
         [Fact]
         public void ApiCategories_PutWithValidCategory_Ok()
         {
@@ -132,7 +132,7 @@ namespace Assignment4.Tests
             Assert.Equal(HttpStatusCode.NotFound, statusCode);
         }
 
-        *//* /api/products *//*
+        /* /api/products */
 
         [Fact]
         public void ApiProducts_ValidId_CompleteProduct()
@@ -191,7 +191,7 @@ namespace Assignment4.Tests
 
             Assert.Equal(HttpStatusCode.NotFound, statusCode);
             Assert.Equal(0, products.Count);
-        }*/
+        }
 
 
 
