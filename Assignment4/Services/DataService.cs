@@ -79,8 +79,12 @@ namespace Assignment4
         {
             using var DB = new DatabaseContext();
             var result = DB.Products
-                        .Where(Products => Products.CategoryId == catId)
-                        .Include(Products => Products.Category).ToList();
+                        .Where(Products => Products.CategoryId == catId).ToList();
+            foreach (var product in result) 
+            {
+                product.Category = GetCategory(product.CategoryId);
+            }
+            //.Include(Products => Products.Category).ToList();
             return result;
         }
 
@@ -89,6 +93,10 @@ namespace Assignment4
             using var DB = new DatabaseContext();
             var result = DB.Products
                         .Where(product => product.Name.Contains(name)).ToList();
+            foreach (var product in result)
+            {
+                product.Category = GetCategory(product.CategoryId);
+            }
             return result;
         }
         public List<Order> GetOrders()
