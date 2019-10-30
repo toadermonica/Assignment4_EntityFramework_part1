@@ -79,7 +79,7 @@ namespace Assignment4
         {
             using var DB = new DatabaseContext();
             var result = DB.Products
-                        .Where(Products => Products.CategoryId == catId).ToList();
+                        .Where(product => product.CategoryId == catId).ToList();
             foreach (var product in result) 
             {
                 product.Category = GetCategory(product.CategoryId);
