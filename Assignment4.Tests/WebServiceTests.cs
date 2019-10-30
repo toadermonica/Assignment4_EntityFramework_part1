@@ -171,7 +171,7 @@ namespace Assignment4.Tests
 
             Assert.Equal(HttpStatusCode.NotFound, statusCode);
             Assert.Equal(0, products.Count);
-        }*/
+        }
 
         [Fact]
         public void ApiProducts_NameContained_ListOfProduct()

@@ -12,7 +12,7 @@ namespace RESTfulAPIs.Controllers
 
     public class ProductsController : ControllerBase
     {
-        IDataService _dataService;
+        readonly IDataService _dataService;
         public ProductsController(IDataService dataService)
         {
             _dataService = dataService;
