@@ -48,8 +48,17 @@ namespace RESTfulAPIs.Controllers
             {
                 return NotFound(); // this is not required by the unit test but it would be nice to know what to return in this case;
             }
+            // saw in the framework that it needs a string uri or a uri uri; 
+            // since the test does not require it for now, just added a string empty. 
+            return Created(string.Empty, category); 
+        }
 
-            return Ok(category);
+        [HttpDelete("{categoryId}")]
+        public ActionResult DeleteData(int categoryId)
+        {
+            if (!_dataService.DeleteCategory(categoryId))
+                return NotFound();
+            return NoContent();
         }
 
 
