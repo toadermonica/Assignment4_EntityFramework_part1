@@ -9,10 +9,10 @@ namespace RESTfulAPIs.Controllers
 {
     [ApiController]
     [Route("api/products")]
-    //[Route("api/products/name")]
+
     public class ProductsController : ControllerBase
     {
-        IDataService _dataService;
+        readonly IDataService _dataService;
         public ProductsController(IDataService dataService)
         {
             _dataService = dataService;
@@ -29,9 +29,28 @@ namespace RESTfulAPIs.Controllers
             return Ok(products);
         }
 
+        [HttpGet("{productId}")]
+        public ActionResult<Product> GetProduct(int productId)
+        {
+            var product = _dataService.GetProduct(productId);
+            if (product == null)
+            {
+                return NotFound(product);
+            }
+            return Ok(product);
+        }
 
-
-
-
+        [HttpGet("category/{categoryId}")]
+        public ActionResult<List<Product>> GetProductsByCatId(int categoryId)
+        {
+            var prods = _dataService.GetProductByCategory(categoryId);
+            if (prods.Count==0)
+            {
+                    return NotFound(prods);
+            }
+            Console.WriteLine("blaprods " + prods.Count);
+            return Ok(prods);
+        }
     }
 }
+

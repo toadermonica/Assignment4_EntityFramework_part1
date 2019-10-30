@@ -13,7 +13,8 @@ namespace RESTfulAPIs
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore); //apparently this is needed for correct json generation -- avoids internal server error
+           // services.AddControllers();
             services.AddSingleton<IDataService, DataService>();
         }
 

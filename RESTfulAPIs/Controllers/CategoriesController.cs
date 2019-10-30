@@ -12,7 +12,7 @@ namespace RESTfulAPIs.Controllers
     [Route("api/categories")]
     public class CategoriesController : ControllerBase
     {
-        IDataService _dataService;
+        readonly IDataService _dataService;
         public CategoriesController(IDataService dataService)
         {
             _dataService = dataService;
@@ -44,12 +44,14 @@ namespace RESTfulAPIs.Controllers
         [HttpPost]
         public ActionResult CreateCategory([FromBody] Category category)
         {
-            if(_dataService.CreateCategory(category.Name, category.Description) == null)
+            var t = _dataService.CreateCategory(category.Name, category.Description);
+            if (t == null)
             {
                 return NotFound(); // this is not required by the unit test but it would be nice to know what to return in this case;
             }
             // saw in the framework that it needs a string uri or a uri uri; 
-            // since the test does not require it for now, just added a string empty. 
+            // since the test does not require it for now, just added a string empty.
+            category.Id = t.Id; //small change: needs the new id returned
             return Created(string.Empty, category); 
         }
 
@@ -58,9 +60,17 @@ namespace RESTfulAPIs.Controllers
         {
             if (!_dataService.DeleteCategory(categoryId))
                 return NotFound();
-            return NoContent();
+            return Ok();
         }
 
-
+        [HttpPut("{categoryId}")]
+        public ActionResult PutCategory([FromBody] Category category)
+        {
+            if (!_dataService.UpdateCategory(category.Id, category.Name, category.Description))
+            {
+                return NotFound(); 
+            }
+            return Ok();
+        }
     }
 }

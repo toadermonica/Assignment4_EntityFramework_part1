@@ -81,8 +81,6 @@ namespace Assignment4
             var result = DB.Products
                         .Where(Products => Products.CategoryId == catId)
                         .Include(Products => Products.Category).ToList();
-
-            Console.WriteLine(result);
             return result;
         }
 
@@ -132,3 +130,4 @@ namespace Assignment4
 
     }
 }
+
