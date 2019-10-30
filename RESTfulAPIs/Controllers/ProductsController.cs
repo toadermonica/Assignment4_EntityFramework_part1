@@ -43,7 +43,7 @@ namespace RESTfulAPIs.Controllers
         }
 
         [HttpGet("category/{categoryId}")]
-        public ActionResult<List<Product>> GetProductsByCatId(int categoryId)
+        public ActionResult<IEnumerable<Product>> GetProductsByCatId(int categoryId)
         {
             var prods = _dataService.GetProductByCategory(categoryId);
             if (prods.Count == 0)
@@ -54,6 +54,19 @@ namespace RESTfulAPIs.Controllers
             Console.WriteLine("blaprods " + prods.Count);
             return Ok(prods);
         }
+/*
+        [HttpGet("category")]
+        public ActionResult<List<Category>> GetProductsCategory(int categoryId)
+        {
+            var prods = _dataService.GetProductByCategory(categoryId);
+            if (prods.Count == 0)
+            {
+                return NotFound(prods);
+            }
 
+            Console.WriteLine("blaprods " + prods.Count);
+            return Ok(prods);
+        }
+        */
     }
 }
