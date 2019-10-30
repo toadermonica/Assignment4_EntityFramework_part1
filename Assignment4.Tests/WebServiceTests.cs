@@ -180,8 +180,8 @@ namespace Assignment4.Tests
 
             Assert.Equal(HttpStatusCode.OK, statusCode);
             Assert.Equal(4, products.Count);
-            Assert.Equal("NuNuCa Nuß-Nougat-Creme", products.First()["productName"]);
-            Assert.Equal("Flotemysost", products.Last()["productName"]);
+            Assert.Equal("NuNuCa Nuß-Nougat-Creme", products.First()["name"]);
+            Assert.Equal("Flotemysost", products.Last()["name"]);
         }
 
         [Fact]
