@@ -1,6 +1,5 @@
-﻿using System;
+﻿using Assignment4.Models;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Assignment4
 {
@@ -14,8 +13,8 @@ namespace Assignment4
         bool UpdateCategory(int categoryId, string categoryName, string categoryDescription);
         Product GetProduct(int value);
 
-        List<Product> GetProductByCategory(int catId);
-        List<Product> GetProductByName(string name); // needs the IList for calling it through interface
+        List<ProductDto> GetProductByCategory(int catId);
+        List<ProductDto> GetProductByName(string name);
   
         List<Order> GetOrders();
         Order GetOrder(int value);

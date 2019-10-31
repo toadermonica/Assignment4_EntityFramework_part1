@@ -1,17 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Assignment4.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Assignment4
 {
     public class DataService : IDataService
     {
-        //public DatabaseContext DB => new DatabaseContext(); when this is here and not inside the functions, the tests won't all pass. Left it here for now. 
-
         public List<Category> GetCategories()
         {
             using var DB = new DatabaseContext();
@@ -74,27 +70,50 @@ namespace Assignment4
             var result = DB.Products.Where(product => product.Id == value).Include(product => product.Category).FirstOrDefault();
             return result;
         }
-
-        public List<Product> GetProductByCategory(int catId)
+        /// <summary>
+        /// This test makes use of ProductDto
+        /// The assigned unit test expects CategoryName instead of Name for Category
+        /// </summary>
+        /// <param name="catId"></param>
+        /// <returns></returns>
+        public List<ProductDto> GetProductByCategory(int catId)
         {
             using var DB = new DatabaseContext();
             var result = DB.Products
                         .Where(Products => Products.CategoryId == catId)
-                        .Include(Products => Products.Category).ToList();
+                        .Include(Products => Products.Category)
+                        .Select(x => new ProductDto()
+                        {
+                            Name = x.Name,
+                            CategoryName = x.Category.Name
+                        })
+                        .ToList();
             return result;
         }
 
-        public List<Product> GetProductByName(string name)
+        /// <summary>
+        /// This method makes use of the new instance of ProductDto
+        /// The test expects both ProductName and Name from the same list
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public List<ProductDto> GetProductByName(string name)
         {
             using var DB = new DatabaseContext();
             var result = DB.Products
-                        .Where(product => product.Name.Contains(name)).ToList();
+                        .Where(p => p.Name.Contains(name))
+                        .Select(p => new ProductDto()
+                        {
+                            Name = p.Name,
+                            ProductName = p.Name
+                        })
+                        .ToList();
             return result;
         }
         public List<Order> GetOrders()
         {
             using var DB = new DatabaseContext();
-            return DB.Orders.ToList(); // this call works for Products but not Orders and I dont know why. 
+            return DB.Orders.ToList();
         }
 
         public Order GetOrder(int value)

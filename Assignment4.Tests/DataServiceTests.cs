@@ -4,6 +4,9 @@ using Xunit;
 
 namespace Assignment4.Tests
 {
+    /// <summary>
+    /// Original Unit Tests Signiture from Assignment
+    /// </summary>
     public class DataServiceTests
     {
         /* Categories */
@@ -93,7 +96,7 @@ namespace Assignment4.Tests
         }
 
 
-        ///* products */
+        /* products */
 
         [Fact]
         public void Product_Object_HasIdNameUnitPriceQuantityPerUnitAndUnitsInStock()
@@ -122,7 +125,7 @@ namespace Assignment4.Tests
             var products = service.GetProductByCategory(1);
             Assert.Equal(12, products.Count);
             Assert.Equal("Chai", products.First().Name);
-            Assert.Equal("Beverages", products.First().Category.Name); // initially it was  products.First().CategoryName but i think this is a mistake
+            Assert.Equal("Beverages", products.First().CategoryName);
             Assert.Equal("Lakkalikööri", products.Last().Name);
         }
 
@@ -132,11 +135,11 @@ namespace Assignment4.Tests
             var service = new DataService();
             var products = service.GetProductByName("em");
             Assert.Equal(4, products.Count);
-            Assert.Equal("NuNuCa Nuß-Nougat-Creme", products.First().Name); // inistially it was products.First().ProductName but I think it is a mistake
-            Assert.Equal("Flotemysost", products.Last().Name);
+            Assert.Equal("NuNuCa Nuß-Nougat-Creme", products.First().ProductName);
+            Assert.Equal("Flotemysost", products.Last().ProductName);
         }
 
-        ///* orders */
+        /* orders */
         [Fact]
         public void Order_Object_HasIdDatesAndOrderDetails()
         {

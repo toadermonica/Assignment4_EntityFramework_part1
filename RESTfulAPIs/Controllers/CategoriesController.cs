@@ -1,9 +1,6 @@
 ﻿using Assignment4;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace RESTfulAPIs.Controllers
 {
@@ -52,7 +49,7 @@ namespace RESTfulAPIs.Controllers
             // saw in the framework that it needs a string uri or a uri uri; 
             // since the test does not require it for now, just added a string empty.
             category.Id = t.Id; //small change: needs the new id returned
-            return Created(string.Empty, category); 
+            return Created(string.Empty, category); //this has been shown with AutoMapper implementation
         }
 
         [HttpDelete("{categoryId}")]
