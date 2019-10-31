@@ -1,19 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Xunit;
 
 namespace Assignment4.Tests
 {
+    /// <summary>
+    /// Original Unit Tests from Assignment
+    /// </summary>
     public class WebServiceTests
     {
-
         private const string CategoriesApi = "http://localhost:5001/api/categories";
         private const string ProductsApi = "http://localhost:5001/api/products";
 
@@ -38,7 +37,7 @@ namespace Assignment4.Tests
             Assert.Equal(HttpStatusCode.OK, statusCode);
             Assert.Equal("Beverages", category["name"]);
         }
-        
+
         [Fact]
         public void ApiCategories_GetWithInvalidCategoryId_NotFound()
         {
@@ -46,7 +45,7 @@ namespace Assignment4.Tests
 
             Assert.Equal(HttpStatusCode.NotFound, statusCode);
         }
-        
+
         [Fact]
         public void ApiCategories_PostWithCategory_Created()
         {
@@ -61,7 +60,7 @@ namespace Assignment4.Tests
 
             DeleteData($"{CategoriesApi}/{category["id"]}");
         }
-        
+
         [Fact]
         public void ApiCategories_PutWithValidCategory_Ok()
         {
@@ -180,8 +179,8 @@ namespace Assignment4.Tests
 
             Assert.Equal(HttpStatusCode.OK, statusCode);
             Assert.Equal(4, products.Count);
-            Assert.Equal("NuNuCa Nuß-Nougat-Creme", products.First()["name"]);
-            Assert.Equal("Flotemysost", products.Last()["name"]);
+            Assert.Equal("NuNuCa Nuß-Nougat-Creme", products.First()["productName"]);
+            Assert.Equal("Flotemysost", products.Last()["productName"]);
         }
 
         [Fact]
@@ -193,10 +192,7 @@ namespace Assignment4.Tests
             Assert.Equal(0, products.Count);
         }
 
-
-
         // Helpers
-
         (JArray, HttpStatusCode) GetArray(string url)
         {
             var client = new HttpClient();
@@ -243,7 +239,5 @@ namespace Assignment4.Tests
             var response = client.DeleteAsync(url).Result;
             return response.StatusCode;
         }
-
-
     }
 }

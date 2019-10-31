@@ -1,9 +1,6 @@
 ﻿using Assignment4;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace RESTfulAPIs.Controllers
 {
@@ -50,8 +47,6 @@ namespace RESTfulAPIs.Controllers
             {
                 return NotFound(prods);
             }
-
-            Console.WriteLine("blaprods " + prods.Count);
             return Ok(prods);
         }
 /*

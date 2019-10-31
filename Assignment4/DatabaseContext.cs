@@ -1,7 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Assignment4
 {
@@ -22,12 +19,12 @@ namespace Assignment4
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetails> OrderDetails { get; set; }
 
-        //there is a way to make Entity map automatically and it could work here 
-        //but on larger projects it is better to manually map things. 
+       /// <summary>
+       /// Kept the manual way of mapping instead of AutoMapper
+       /// </summary>
+       /// <param name="modelBuilder"></param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
-
             modelBuilder.Entity<Category>().ToTable("categories");
             modelBuilder.Entity<Category>().Property(c => c.Id).HasColumnName("categoryid");
             modelBuilder.Entity<Category>().Property(c => c.Name).HasColumnName("categoryname");
@@ -53,20 +50,8 @@ namespace Assignment4
             modelBuilder.Entity<OrderDetails>().Property(od => od.UnitPrice).HasColumnName("unitprice");
             modelBuilder.Entity<OrderDetails>().Property(od => od.Quantity).HasColumnName("quantity");
             modelBuilder.Entity<OrderDetails>().Property(od => od.Discount).HasColumnName("discount");
-            modelBuilder.Entity<OrderDetails>().HasKey(od => new { od.OrderId, od.ProductId });          // FK constraints
-
-            ////no need for these yet!
-            //modelBuilder.Entity<Employees>().ToTable("employees");
-            //modelBuilder.Entity<Employees>().Property(e => e.ID).HasColumnName("employeeid");
-            //modelBuilder.Entity<Employees>().Property(e => e.LastName).HasColumnName("lastname");
-            //modelBuilder.Entity<Employees>().Property(e => e.FirstName).HasColumnName("firstname");
-            //modelBuilder.Entity<Employees>().Property(e => e.Title).HasColumnName("title");
-            //modelBuilder.Entity<Employees>().Property(e => e.BirthDate).HasColumnName("birthdate");
-            //modelBuilder.Entity<Employees>().Property(e => e.HireDate).HasColumnName("hiredate");
-            //modelBuilder.Entity<Employees>().Property(e => e.Address).HasColumnName("address");
-            //modelBuilder.Entity<Employees>().Property(e => e.City).HasColumnName("city");
-            //modelBuilder.Entity<Employees>().Property(e => e.PostalCode).HasColumnName("postalcode");
-            //modelBuilder.Entity<Employees>().Property(e => e.Country).HasColumnName("country");
+            //Composite key definition for the two FK from OrderDetails in DB
+            modelBuilder.Entity<OrderDetails>().HasKey(od => new { od.OrderId, od.ProductId });          
 
         }
        
