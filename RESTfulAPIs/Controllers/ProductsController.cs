@@ -28,7 +28,18 @@ namespace RESTfulAPIs.Controllers
                 return NotFound(products);
             }
 
-            String s = JsonConvert.SerializeObject(products, Formatting.Indented,
+            var prodlist = new List<ProductList>();
+
+            foreach (Product p in products)
+            {
+
+                var prod = new ProductList();
+                prod.productName = p.Name;
+                prodlist.Add(prod);
+
+            }
+
+            String s = JsonConvert.SerializeObject(prodlist, Formatting.Indented,
     new JsonSerializerSettings()
     {
         ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
@@ -37,7 +48,7 @@ namespace RESTfulAPIs.Controllers
 
             Console.WriteLine("prodsbynam " + s);
 
-            return Ok(products);
+            return Ok(prodlist);
         }
 
         [HttpGet("{productId}")]
@@ -61,18 +72,18 @@ namespace RESTfulAPIs.Controllers
             }
 
 
-            var prodlist = new List<ProductList>();
+            var prodlist = new List<ProductListWithCategory>();
 
-            foreach (Product p in prods) {
+            foreach (Product p in prods)
+            {
 
-                var prod = new ProductList();
+                var prod = new ProductListWithCategory();
                 prod.Name = p.Name;
                 prod.categoryName = p.Category.Name;
                 prodlist.Add(prod);
 
             }
-            
-            
+
             String s = JsonConvert.SerializeObject(prodlist, Formatting.Indented,
                 new JsonSerializerSettings()
                 {
@@ -84,9 +95,16 @@ namespace RESTfulAPIs.Controllers
 
             return Ok(prodlist);
         }
+
+
     }
 
     internal class ProductList
+    {
+        public string productName { get; set; }
+ 
+    }
+    internal class ProductListWithCategory
     {
         public string Name { get; set; }
         public string categoryName { get; set; }
