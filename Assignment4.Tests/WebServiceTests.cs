@@ -160,8 +160,8 @@ namespace Assignment4.Tests
             Assert.Equal(HttpStatusCode.OK, statusCode);
             Assert.Equal(12, products.Count);
             Assert.Equal("Chai", products.First()["name"]);
-            //Assert.Equal("Beverages", products.First()["categoryName"]);
-            Assert.Equal("Beverages", products.First()["category"]["name"]);
+            Assert.Equal("Beverages", products.First()["categoryName"]);
+            //Assert.Equal("Beverages", products.First()["category"]["name"]);
             Assert.Equal("Lakkalikööri", products.Last()["name"]);
         }
 

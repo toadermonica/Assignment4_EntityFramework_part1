@@ -60,7 +60,20 @@ namespace RESTfulAPIs.Controllers
                 return NotFound(prods);
             }
 
-            String s = JsonConvert.SerializeObject(prods, Formatting.Indented,
+
+            var prodlist = new List<ProductList>();
+
+            foreach (Product p in prods) {
+
+                var prod = new ProductList();
+                prod.Name = p.Name;
+                prod.categoryName = p.Category.Name;
+                prodlist.Add(prod);
+
+            }
+            
+            
+            String s = JsonConvert.SerializeObject(prodlist, Formatting.Indented,
                 new JsonSerializerSettings()
                 {
                     ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
@@ -69,8 +82,14 @@ namespace RESTfulAPIs.Controllers
 
             Console.WriteLine("prodsbycat " + s);
 
-            return Ok(prods);
+            return Ok(prodlist);
         }
+    }
+
+    internal class ProductList
+    {
+        public string Name { get; set; }
+        public string categoryName { get; set; }
     }
 }
 
